@@ -7,3 +7,5 @@ What happens in the #general of the WWG Slack you wonder? We welcome people. Wit
 
 I'm a big fan of [Gopherize.me](https://gopherize.me), with the lates [blog post](https://medium.com/@matryer/the-secret-api-behind-gopherize-me-9202654578dc) I read explaining their API the idea came up to turn it into a slackbot!
 
+## What does this scipt look like?
+![A Gopher](https://lh3.googleusercontent.com/r8ep68IJwaxg-UJCL39qqvNRyl2IUZwlMv-1oidmimGuOAXpF0HQ6DhXx2oPA0me1uBPthtnYQvufgPkbGW47_vi)
