@@ -1,7 +1,12 @@
 package main
 
-import "net/http"
-import "os"
+import (
+	"encoding/json"
+	"net/http"
+	"os"
+
+	resty "gopkg.in/resty.v0"
+)
 
 type slashCommand struct {
 	Token       string
@@ -14,6 +19,12 @@ type slashCommand struct {
 	Command     string
 	Text        string
 	Hook        string
+	ResponseURL string
+}
+
+type slackResponse struct {
+	ResponseType string `json:"response_type,omitempty"`
+	Text         string `json:"text"`
 }
 
 var token = os.Getenv("token")
@@ -34,6 +45,7 @@ func commandHandler(w http.ResponseWriter, r *http.Request) {
 		Command:     v.Get("command"),
 		Text:        v.Get("text"),
 		Hook:        v.Get("hook"),
+		ResponseURL: v.Get("response_url"),
 	}
 
 	if sc.Token != token {
@@ -42,5 +54,20 @@ func commandHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Write([]byte(buildRandomGopher(sc.Text)))
+	reply, _ := json.Marshal(slackResponse{
+		ResponseType: "in_channel",
+		Text:         "Generating Gopher...",
+	})
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(reply)
+	go sendMessage(sc)
+}
+
+func sendMessage(sc *slashCommand) {
+	message := buildRandomGopher(sc.Text)
+
+	resty.R().SetBody(slackResponse{
+		Text: message,
+	}).Post(sc.ResponseURL)
 }
