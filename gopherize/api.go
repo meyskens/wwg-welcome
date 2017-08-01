@@ -10,7 +10,7 @@ import (
 
 type artworkResponse struct {
 	Categories        []gopherizeme.Category `json:"categories"`
-	TotalCombinations int                    `json:"total_combinations"`
+	TotalCombinations int64                  `json:"total_combinations"`
 }
 
 // <3 https://mholt.github.io/json-to-go/
