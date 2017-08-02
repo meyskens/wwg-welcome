@@ -28,8 +28,7 @@ func buildRandomGopher(name string) string {
 
 		fmt.Println(category.Name)
 		image := category.Images[rand.Intn(len(category.Images))]
-		fmt.Println(image.ID)
-		gopher.SetImage(category.Name, image.ID)
+		gopher.SetImage(image.ID)
 	}
 
 	url, err := gopher.GetImageURL()

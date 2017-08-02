@@ -6,7 +6,7 @@ import (
 
 // Gopher is the gopher image to be generated
 type Gopher struct {
-	images      map[string]string
+	images      []string
 	imagesMutex sync.Mutex
 }
 
@@ -14,13 +14,13 @@ type Gopher struct {
 func NewGopher() Gopher {
 	return Gopher{
 		imagesMutex: sync.Mutex{},
-		images:      map[string]string{},
+		images:      []string{},
 	}
 }
 
-func (g *Gopher) SetImage(name, id string) {
+func (g *Gopher) SetImage(id string) {
 	g.imagesMutex.Lock()
-	g.images[name] = id
+	g.images = append(g.images, id)
 	g.imagesMutex.Unlock()
 }
 
