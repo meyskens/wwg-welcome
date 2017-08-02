@@ -22,9 +22,14 @@ type slashCommand struct {
 	ResponseURL string
 }
 
+type slackAttachment struct {
+	Text     string `json:"text"`
+	ImageURL string `json:"image_url"`
+}
 type slackResponse struct {
-	ResponseType string `json:"response_type,omitempty"`
-	Text         string `json:"text"`
+	ResponseType string            `json:"response_type,omitempty"`
+	Text         string            `json:"text"`
+	Attachments  []slackAttachment `json:"attachments"`
 }
 
 var token = os.Getenv("token")
@@ -65,9 +70,17 @@ func commandHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func sendMessage(sc *slashCommand) {
-	message := buildRandomGopher(sc.Text)
+	url := buildRandomGopher(sc.Text)
 
 	resty.R().SetBody(slackResponse{
-		Text: message,
+		Text: "Here is a Gopher I made using your input",
+		Attachments: []slackAttachment{
+			slackAttachment{
+				ImageURL: url,
+			},
+			slackAttachment{
+				Text: "Got the taste? Visit Gopherize.me",
+			},
+		},
 	}).Post(sc.ResponseURL)
 }
