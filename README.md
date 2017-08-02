@@ -12,3 +12,6 @@ I'm a big fan of [Gopherize.me](https://gopherize.me), with the lates [blog post
 
 ## What does this script look like?
 ![A Gopher](https://lh3.googleusercontent.com/r8ep68IJwaxg-UJCL39qqvNRyl2IUZwlMv-1oidmimGuOAXpF0HQ6DhXx2oPA0me1uBPthtnYQvufgPkbGW47_vi)
+
+---
+Artwork by Ashley McNamara inspired by Renee French, also thanks to Mat Ryer for the API
