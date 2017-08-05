@@ -73,7 +73,8 @@ func sendMessage(sc *slashCommand) {
 	url := buildRandomGopher(sc.Text)
 
 	resty.R().SetBody(slackResponse{
-		Text: "Here is a Gopher I made using your input",
+		ResponseType: "in_channel",
+		Text:         "Here is a Gopher I made using your input",
 		Attachments: []slackAttachment{
 			slackAttachment{
 				ImageURL: url,
