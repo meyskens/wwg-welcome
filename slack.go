@@ -10,11 +10,11 @@ import (
 
 type slashCommand struct {
 	Token       string
-	TeamId      string
+	TeamID      string
 	TeamDomain  string
-	ChannelId   string
+	ChannelID   string
 	ChannelName string
-	UserId      string
+	UserID      string
 	UserName    string
 	Command     string
 	Text        string
@@ -41,11 +41,11 @@ func commandHandler(w http.ResponseWriter, r *http.Request) {
 
 	sc := &slashCommand{
 		Token:       v.Get("token"),
-		TeamId:      v.Get("team_id"),
+		TeamID:      v.Get("team_id"),
 		TeamDomain:  v.Get("team_domain"),
-		ChannelId:   v.Get("channel_id"),
+		ChannelID:   v.Get("channel_id"),
 		ChannelName: v.Get("channel_name"),
-		UserId:      v.Get("user_id"),
+		UserID:      v.Get("user_id"),
 		UserName:    v.Get("user_name"),
 		Command:     v.Get("command"),
 		Text:        v.Get("text"),
